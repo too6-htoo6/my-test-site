@@ -1,28 +1,43 @@
-body {
+/* 画面全体の設定 */
+html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* 横スクロールバーを出さない */
-    background: #001f3f; /* 背景を濃い青にすると泡が映えます */
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    background: #ffffff; /* 背景は白 */
 }
 
+/* 泡が舞う背景専用のエリア */
+#bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* 画面幅いっぱい */
+    height: 100vh; /* 画面高さいっぱい */
+    overflow: hidden;
+    z-index: 9999; /* 【テスト用】一番手前に表示させる */
+    pointer-events: none;
+}
+
+/* 泡（span）の設定 */
 span {
     position: absolute;
-    bottom: -50px; /* 画面の下から出現 */
-    background: rgba(255, 255, 255, 0.3); /* 半透明の白 */
+    bottom: -100px;
+    /* 【テスト用】はっきり見える濃い水色に変更 */
+    background: #00bfff !important; 
     border-radius: 50%;
-    pointer-events: none; /* 泡がクリックを邪魔しないように */
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
-    animation: animate 4s linear infinite;
+    display: block; /* 念のため追加 */
+    animation: animate 10s linear infinite;
 }
 
 @keyframes animate {
     0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
         opacity: 1;
     }
     100% {
-        transform: translateY(-100vh) scale(1.5);
+        transform: translateY(-120vh);
         opacity: 0;
     }
 }

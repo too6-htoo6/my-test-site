@@ -1,23 +1,26 @@
 function createBubble() {
-    const section = document.querySelector('body');
+    const section = document.getElementById('bubble-container');
+    // もし箱が見つからない場合は、エラーをコンソールに出して教えてくれるようにします
+    if (!section) {
+        console.error('bubble-container が見つかりません');
+        return;
+    }
+
     const bubble = document.createElement('span');
     
-    // 泡のサイズをランダムに設定（10px〜60px）
-    var size = Math.random() * 50 + 10;
+    var size = Math.random() * 55 + 15;
     bubble.style.width = size + 'px';
     bubble.style.height = size + 'px';
-    
-    // 泡の出現位置を横幅いっぱいのランダムな位置に設定
     bubble.style.left = Math.random() * innerWidth + 'px';
     
-    // 泡をHTMLに追加
     section.appendChild(bubble);
     
-    // 4秒後に泡を消す（アニメーションが終わる頃）
     setTimeout(() => {
         bubble.remove();
-    }, 4000);
+    }, 10000);
 }
 
-// 0.1秒ごとに新しい泡を生成
-setInterval(createBubble, 100);
+// 【重要】画面の読み込みが完了してから実行するように囲む
+window.addEventListener('load', () => {
+    setInterval(createBubble, 300);
+});
